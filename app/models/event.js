@@ -7,14 +7,10 @@ var mongoose = require('mongoose'),
  * EventSchema Schema
  */
 var EventSchema = new Schema({
-  id: String,
-  hasProcessedCreativeWorks: Boolean,
-  creativeWorksPage: Number,
-  disambiguationHint: String,
+  id: {type: String, required: true},
+  hasProcessed: Boolean,
   preferredLabel: String,
-  title: String,
-  synopsis: String,
-  topic: Array
+  eventStartDate: Date
 });
 
 mongoose.model('Event', EventSchema);
