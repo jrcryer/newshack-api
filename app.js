@@ -5,6 +5,7 @@
  */
 var express = require('express'),
     fs = require('fs'),
+    path = require('path'),
     mongoose = require('mongoose'),
     hbs = require('express-hbs');
 
@@ -17,22 +18,11 @@ var express = require('express'),
 var config = require('./config/config');
 var db     = mongoose.connect(config.db);
 
-//Bootstrap models
-// var models_path = __dirname + '/app/models';
-// var walk = function(path) {
-//     fs.readdirSync(path).forEach(function(file) {
-//         var newPath = path + '/' + file;
-//         var stat = fs.statSync(newPath);
-//         if (stat.isFile()) {
-//             if (/(.*)\.(js|coffee)/.test(file)) {
-//                 require(newPath);
-//             }
-//         } else if (stat.isDirectory()) {
-//             walk(newPath);
-//         }
-//     });
-// };
-// walk(models_path);
+// Bootstrap models
+var modelsPath = path.join(__dirname, 'app/models');
+fs.readdirSync(modelsPath).forEach(function (file) {
+  require(modelsPath + '/' + file);
+});
 
 var app = express();
 
@@ -48,6 +38,9 @@ require('./config/express')(app, db);
 
 //Bootstrap routes
 require('./config/routes')(app);
+
+//Tasks
+require('./app/controllers/tasks');
 
 //Start the app by listening on <port>
 var port = config.port;

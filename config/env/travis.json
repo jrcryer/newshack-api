@@ -1,5 +1,5 @@
 {
-    "db": "mongodb://localhost/mean-travis",
+    "db": "mongodb://localhost/storyline-api",
     "port": 3001,
     "app": {
         "name": "NewHack -  - Test on travis"

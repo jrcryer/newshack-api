@@ -35,7 +35,8 @@
         "async": "latest",
         "forever": "latest",
         "grunt": "latest",
-        "grunt-cli": "latest"
+        "grunt-cli": "latest",
+        "request": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
