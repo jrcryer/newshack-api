@@ -5,7 +5,8 @@
  */
 var express = require('express'),
     fs = require('fs'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    hbs = require('express-hbs');
 
 /**
  * Main application entry file.
@@ -34,6 +35,13 @@ var db     = mongoose.connect(config.db);
 // walk(models_path);
 
 var app = express();
+
+
+
+// View engine
+app.engine('hbs', hbs.express3());
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/app/views');
 
 //express settings
 require('./config/express')(app, db);
