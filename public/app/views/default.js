@@ -4,12 +4,18 @@ App.views.Default = Backbone.View.extend({
   el: "body",
 
   initialize: function () {
-    _.bindAll(this, 'render');
     this.render();
   },
 
   render: function () {
-    var html = this.template({});
+    var html = this.template(this.model);
     $(this.el).append(html);
+  },
+
+  setProject: function(model) {
+    this.model = model;
+
+    new App.views.StorylineNav(this.model);
   }
+
 });
