@@ -14,6 +14,16 @@ exports.get = function(req, res) {
   });
 };
 
+exports.delete = function(req, res) {
+  Storyline.remove({_id: req.params.id }, function(err, storyline){
+    if (err) {
+      res.json({error: err}); 
+    } else {
+      res.json({message: 'deleted'}); 
+    }
+  });
+};
+
 /**
  * List resources
  */

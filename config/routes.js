@@ -11,6 +11,7 @@ module.exports = function(app) {
   	app.get('/api/storylines', api.storylines.list);
   	app.post('/api/storylines', api.storylines.create);
   	app.get('/api/storylines/:id', api.storylines.get);
+  	app.delete('/api/storylines/:id', api.storylines.delete);
   	app.put('/api/storylines/:id', api.storylines.update);
 
 };
