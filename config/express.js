@@ -10,7 +10,6 @@ var express        = require('express'),
     bodyParser     = require('body-parser'),
     compression    = require('compression'),
     methodOverride = require('method-override'),
-    //MongoStore     = require('connect-mongo')({session: session}),
     flash          = require('connect-flash'),
     config         = require('./config');
 
@@ -40,15 +39,6 @@ module.exports = function(app, db) {
     app.use(bodyParser.urlencoded());
     app.use(bodyParser.json());
     app.use(methodOverride());
-
-    // Express/Mongo session storage
-    // app.use(session({
-    //     secret: config.sessionSecret,
-    //     store: new MongoStore({
-    //         db: db.connection.db,
-    //         collection: config.sessionCollection
-    //     })
-    // }));
 
     // Connect flash for flash messages
     app.use(flash());
