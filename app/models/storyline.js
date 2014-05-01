@@ -14,7 +14,8 @@ var StorylineSchema = new Schema({
   title: String,
   synopsis: String,
   slug: String,
-  events: Object
+  events: Object,
+  topics: Array
 });
 
 mongoose.model('Storyline', StorylineSchema);

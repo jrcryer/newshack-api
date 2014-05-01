@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
   Storyline = mongoose.model('Storyline'),
   Event = mongoose.model('Event'),
   NewsItem = mongoose.model('NewsItem'),
+  Topic = mongoose.model('Topic'),
   request = require('request'),
   api = require('../api');
 
@@ -40,12 +41,12 @@ function populateStoryline(storyline, data) {
   console.log('Updating Storyline:', storyline.uri);
 
   var storylineData = data['@graph'][0];
-  console.log('storylineData', storylineData);
   storyline.title = storylineData.title;
   storyline.synopsis = storylineData.synopsis;
   storyline.slug = storylineData.slug;
-  //storyline.hasProcessed = true;
+  storyline.hasProcessed = true;
 
+  processTopics(storyline, storylineData.topic['@set']);
   processEvents(storyline, data['@graph']);
 
   storyline.save(function (err) {
@@ -56,6 +57,53 @@ function populateStoryline(storyline, data) {
   });
 
   
+}
+
+function processTopics(storyline, topicsData) {
+  var topic, topics = [];
+  topicsData.forEach(function(data){
+    topic = {
+      thumbnail: data.thumbnail,
+      preferredLabel: data.preferredLabel,
+      type: data['@type'],
+      id: data['@id'],
+      longitude: data.long,
+      latitude: data.lat
+    };
+
+    topics.push(topic);
+
+    api.topics.findById(topic.id, function(result){
+      if (!result) {
+        processTopic(data);    
+      } else {
+        console.log('Topic already exists');
+      }
+    });
+  });
+  storyline.topics = topics;
+}
+
+function processTopic(data) {
+  console.log('Processing new Topic', data['@id']);
+  var now = Date();
+  var topic = new Topic({
+    id: data['@id'],
+    created: now,
+    modified: now,
+    hasProcessed: false,
+    thumbnail: data.thumbnail,
+    preferredLabel: data.preferredLabel,
+    type: data['@type'],
+    longitude: data.long,
+    latitude: data.lat
+  });
+  topic.save(function (err) {
+    if (!err) {
+    } else {
+      console.log('Error saving new Topic for', topic.id);
+    }
+  });
 }
 
 function processEvents(storyline, graph) {
