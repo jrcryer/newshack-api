@@ -14,6 +14,10 @@ var express = require('express'),
 
 // Initializing system variables
 var config = require('./config/config');
+
+console.log(config.db);
+console.log(process.env.NODE_ENV);
+console.log(process.env.MONGOHQ_URL);
 var db     = mongoose.connect(config.db);
 
 //Bootstrap models
