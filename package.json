@@ -6,7 +6,7 @@
     "author": "The LatLongs",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jrcryer/newhack.git"
+        "url": "https://github.com/jrcryer/newhack-api.git"
     },
     "engines": {
         "node": "0.10.x",
