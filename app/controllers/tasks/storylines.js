@@ -39,10 +39,11 @@ function populateStoryline(storyline, data) {
   console.log('Updating Storyline:', storyline.uri);
 
   var storylineData = data['@graph'][0];
-  //console.log('storylineData', storylineData);
+  console.log('storylineData', storylineData);
   storyline.title = storylineData.title;
   storyline.synopsis = storylineData.synopsis;
   storyline.slug = storylineData.slug;
+  storyline.hasProcessed = true;
 
   processEvents(storyline, data['@graph']);
 

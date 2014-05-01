@@ -3,8 +3,11 @@
 exports.storylines = require('./tasks/storylines');
 //exports.geonames = require('./tasks/geonames');
 
-setInterval(function(){
+function processStorylines(){
 	console.log('Run storylines task');
-	exports.storylines.processNew();	
-}, 10000);
+	exports.storylines.processNew();		
+}
+
+setInterval(processStorylines, 10000);
+processStorylines();
 

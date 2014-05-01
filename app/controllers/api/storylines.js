@@ -5,12 +5,12 @@ Storyline = mongoose.model('Storyline');
 
 exports.get = function(req, res) {
   var storylineId = req.params.id, storyline;
-  exports.findByQuery({id: storylineId}, {dateCreated: 1}, function(storylines){
+  exports.findByQuery({_id: storylineId}, {dateCreated: 1}, function(storylines){
     if (!storylines || 0 === storylines.length) {
         return res.send('No storyline matching id ' +storylineId);
     }
     storyline = storylines[0];
-
+    res.json(storyline); 
   });
 };
 
@@ -28,13 +28,22 @@ exports.delete = function(req, res) {
  * List resources
  */
 exports.list = function(req, res) {
-  return Storyline.find(function (err, storylines) {
-    if (!err) {
-      return res.json(storylines);
-    } else {
-      return res.send(err);
-    }
-  });
+
+  if (req.query.uri) {
+    exports.findByQuery({uri: req.query.uri}, {dateCreated: 1}, function(storylines){
+      res.json(storylines); 
+    });
+  } else {
+
+    return Storyline.find(function (err, storylines) {
+      if (!err) {
+        return res.json(storylines);
+      } else {
+        return res.send(err);
+      }
+    });
+
+  }
 };
 
 /**

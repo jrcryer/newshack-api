@@ -11,7 +11,9 @@ var StorylineSchema = new Schema({
   hasProcessed: Boolean,
   created: Date,
   modified: Date,
-  preferredLabel: String,
+  title: String,
+  synopsis: String,
+  slug: String,
   events: Object
 });
 
