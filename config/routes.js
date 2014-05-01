@@ -23,4 +23,6 @@ module.exports = function(app) {
 
     app.get('/api/newsitems', api.newsItems.list);
 
+    app.get('/api/topics', api.topics.list);
+
 };
