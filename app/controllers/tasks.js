@@ -3,4 +3,7 @@
 exports.storylines = require('./tasks/storylines');
 //exports.geonames = require('./tasks/geonames');
 
-exports.storylines.processNew();
+setInterval(function(){
+	exports.storylines.processNew();	
+}, 5000);
+
