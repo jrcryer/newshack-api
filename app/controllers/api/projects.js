@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
 Project = mongoose.model('Project');
 
 exports.get = function(req, res) {
-  var projectId = req.params.id, storyline;
-  exports.findByQuery({_id: projectId}, function(projects){
+  var projectId = req.params.id, project;
+  exports.findByQuery({_id: projectId}, null, function(projects){
     if (!projects || 0 === projects.length) {
         return res.send('No project matching id ' +projectId);
     }
