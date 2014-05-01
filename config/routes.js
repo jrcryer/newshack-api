@@ -5,6 +5,7 @@ module.exports = function(app) {
     //Home route
     var index = require('../app/controllers/index');
     app.get('/', index.render);
+    app.get('/projects/:id', index.render);
 
     //API
   	var api = require('../app/controllers/api');
