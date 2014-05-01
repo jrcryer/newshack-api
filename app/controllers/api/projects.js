@@ -1,7 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
+api = require('../api'),
 Project = mongoose.model('Project');
+
 
 exports.get = function(req, res) {
   var projectId = req.params.id, project;
@@ -48,12 +50,43 @@ exports.create = function(req, res) {
     created: now,
     modified: now
   });
-  project.save(function (err) {
-    if (!err) {
-      return res.json(project);      
+
+  exports.populateProjectFromStoryline(project, function(){
+    project.save(function (err) {
+      if (!err) {
+        return res.json(project);
+      } else {
+        return res.send(err);
+      }
+    });    
+  });
+
+};
+
+exports.populateProjectFromStoryline = function(projectModel, callback) {
+  var storyline, storylineData = {};
+  console.log('populateProjectFromStoryline', projectModel.storylineId);
+  api.storylines.findByQuery({_id: projectModel.storylineId}, null, function(storylines) {
+    if (storylines && storylines.length) {
+      storyline = storylines[0];
+      console.log('storyline', storyline.title);
+      storylineData.title = storyline.title;
+      storylineData.synopsis = storyline.synopsis;
+      storylineData.uri = storyline.uri;
+      storylineData.events = [];
+      if (storyline.events) {
+        storyline.events.forEach(function(event){
+          storylineData.events.push({
+            eventStartDate: event.eventStartDate,
+            preferredLabel: event.preferredLabel
+          });
+        });
+      }
+      projectModel.storyline = storylineData;
     } else {
-      return res.send(err);
+      console.log('Error populating project from storyline');
     }
+    callback();
   });
 };
 
