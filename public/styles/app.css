@@ -1,0 +1,17 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	width: 100%;
+	height: 36px;
+	background: #999;
+	border-bottom: 1px solid #333;
+}
+
+#storyline-nav {
+	width: 280px;
+	background: #cecece;
+	border-right: #666;
+}

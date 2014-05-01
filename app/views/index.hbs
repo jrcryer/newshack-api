@@ -10,55 +10,10 @@
         <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
         <link rel="stylesheet" href="/styles/app.css">
-        <script src="components/modernizr/modernizr.js"></script>
+        <script src="/components/modernizr/modernizr.js"></script>
     </head>
 
-        <script type="text/html" id="default-template">
-            <header>
-                <button>Save project</button>
-            </header>
-            <div id="storyline-nav"></div>
-        </script>
-
-        <script type="text/html" id="storyline-nav-template">
-            <h1><%= this.model.get('storyline').title %></h1>
-            <p><%= this.model.get('storyline').synposis %></p>
-            <h2>Events<h2>
-            <ol id="storyline-events"></ol>
-        </script>
-
-        <script type="text/html" id="storyline-event-template">
-            <li>
-                <%= this.model.get('title') %>
-                <ul class="creative-works"></ul>
-            </li>
-        </script>
-
-
-        <script type="text/html" id="creative-work-template">
-            <li><%= this.model.get('title') %></li>
-        </script>
-
-        <script src="components/jquery/dist/jquery.js"></script>
-        <script src="components/underscore/underscore.js"></script>
-        <script src="components/backbone/backbone.js"></script>
-
-        <!-- Application -->
-        <script src="app/app.js"></script>
-
-        <!-- Application views -->
-        <script src="app/views/default.js"></script>
-        <script src="app/views/storyline-nav.js"></script>
-        <script src="app/views/storyline-event.js"></script>
-        <script src="app/views/creative-work.js"></script>
-
-        <!-- Application models -->
-        <script src="app/models/project.js"></script>
-        <script src="app/models/storyline-event.js"></script>
-        <script src="app/models/creative-work.js"></script>
-
-        <!-- Application router / loader -->
-        <script src="app/router.js"></script>
+    <script data-main="/app/app.js" src="/components/require/require.js"></script>
 
     </body>
 </html>

@@ -17,11 +17,28 @@ module.exports = function(grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         pkg: grunt.file.readJSON('package.json'),
+        watch: {
+            html: {
+                files: ['app/template/**'],
+                tasks: ['handlebars']
+            }
+        },
         jshint: {
             all: {
                 src: ['gruntfile.js', 'test/**/*.js', 'app/controllers/**/*.js'],
                 options: {
                     jshintrc: true
+                }
+            }
+        },
+        handlebars: {
+            compile: {
+                options: {
+                    namespace: 'JST',
+                    amd: true
+                },
+                files: {
+                    'public/app/template.js': ['app/template/**/*.hbs']
                 }
             }
         },
@@ -42,9 +59,13 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        clean: {
+            clean: {
+                src: ['public/js/newshack/template.js']
+            }
+        },
         concurrent: {
-            tasks: ['nodemon'],
+            tasks: ['nodemon', 'watch'],
             options: {
                 logConcurrentOutput: true
             }
@@ -61,10 +82,10 @@ module.exports = function(grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'jshint', 'handlebars', 'concurrent']);
 
     // Default task(s).
-    grunt.registerTask('build', ['jshint']);
+    grunt.registerTask('build', ['clean', 'jshint', 'handlebars']);
 
     //Test task.
     grunt.registerTask('test', ['mochaTest']);

@@ -1,21 +1,36 @@
-App.views.Default = Backbone.View.extend({
+define([
+  'jquery', 
+  'backbone', 
+  'template',
+  'views/storylinenav'
+], function(
+  $, 
+  Backbone, 
+  Template,
+  StorylineNavView
+){
 
-  template: _.template($("#default-template").html()),
-  el: "body",
+  var DefaultView = Backbone.View.extend({
 
-  initialize: function () {
-    this.render();
-  },
+    template: Template['app/template/default.hbs'],
 
-  render: function () {
-    var html = this.template(this.model);
-    $(this.el).append(html);
-  },
+    el: "body",
 
-  setProject: function(model) {
-    this.model = model;
+    initialize: function () {
+      this.render();
+    },
 
-    new App.views.StorylineNav(this.model);
-  }
+    render: function () {
+      var html = this.template(this.model);
+      $(this.el).append(html);
+    },
 
+    setProject: function(model) {
+      this.model = model;
+      var navView = new StorylineNavView(this.model);
+    }
+
+  });
+
+  return DefaultView;
 });
