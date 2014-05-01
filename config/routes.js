@@ -21,4 +21,6 @@ module.exports = function(app) {
     app.delete('/api/projects/:id', api.projects.delete);
     app.put('/api/projects/:id', api.projects.update);
 
+    app.get('/api/newsitems', api.newsItems.list);
+
 };

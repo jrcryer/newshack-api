@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
   Storyline = mongoose.model('Storyline'),
   Event = mongoose.model('Event'),
+  NewsItem = mongoose.model('NewsItem'),
   request = require('request'),
   api = require('../api');
 
@@ -43,7 +44,7 @@ function populateStoryline(storyline, data) {
   storyline.title = storylineData.title;
   storyline.synopsis = storylineData.synopsis;
   storyline.slug = storylineData.slug;
-  storyline.hasProcessed = true;
+  //storyline.hasProcessed = true;
 
   processEvents(storyline, data['@graph']);
 
@@ -58,14 +59,16 @@ function populateStoryline(storyline, data) {
 }
 
 function processEvents(storyline, graph) {
-  var events = [];
+  var event, events = [];
   graph.forEach(function(data){
     if ('Event' === data['@type']) {
-      events.push({
+      event = {
         id: data['@id'],
         eventStartDate: data.eventStartDate,
         preferredLabel: data.preferredLabel
-      });
+      };
+      processNewsItems(event, data.taggedOn['@set'])
+      events.push(event);
 
       api.events.findById(data['@id'], function(event){
         if (!event) {
@@ -78,6 +81,34 @@ function processEvents(storyline, graph) {
     }
   });
   storyline.events = events;
+}
+
+function processNewsItems(event, newsItemsData) {
+  var newsItem, newsItems = [];
+
+  newsItemsData.forEach(function(data){
+
+      newsItem = {
+        product: data.product,
+        title: data.title,
+        description: data.description,
+        dateCreated: data.dateCreated,
+        id: data['@id'],
+        identifier: data.identifier
+      };
+
+      newsItems.push(newsItem);
+
+      api.newsItems.findById(newsItem['@id'], function(newsItem){
+        if (!event) {
+          processNewsItem(data);    
+        } else {
+          console.log('Event already exists');
+        }
+      });
+      
+  });
+  event.newsItems = newsItems;
 }
 
 function processEvent(data) {
@@ -95,6 +126,28 @@ function processEvent(data) {
     if (!err) {
     } else {
       console.log('Error saving new Event for', event.id);
+    }
+  });
+}
+
+function processNewsItem(data) {
+  console.log('Processing new NewsItem', data['@id']);
+  var now = Date();
+  var newsItem = new NewsItem({
+    id: data['@id'],
+    created: now,
+    modified: now,
+    hasProcessed: false,
+    product: data.product,
+    title: data.title,
+    description: data.description,
+    dateCreated: data.dateCreated,
+    identifier: data.identifier
+  });
+  newsItem.save(function (err) {
+    if (!err) {
+    } else {
+      console.log('Error saving new NewsItem for', newsItem.id);
     }
   });
 }
