@@ -11,9 +11,8 @@ var StorylineSchema = new Schema({
   hasProcessed: Boolean,
   created: Date,
   modified: Date,
-  title: String,
-  synopsis: String,
-  slug: String
+  preferredLabel: String,
+  events: Object
 });
 
 mongoose.model('Storyline', StorylineSchema);
