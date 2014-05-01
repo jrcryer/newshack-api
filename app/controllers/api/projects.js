@@ -77,6 +77,7 @@ exports.populateProjectFromStoryline = function(projectModel, callback) {
       if (storyline.events) {
         storyline.events.forEach(function(event){
           storylineData.events.push({
+            id: event.id,
             eventStartDate: event.eventStartDate,
             preferredLabel: event.preferredLabel
           });
