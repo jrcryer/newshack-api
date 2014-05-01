@@ -15,7 +15,7 @@ var httpProxy = process.env.http_proxy;
  */
 exports.processNew = function() {
       
-  console.log('Process new storylines.');
+  //console.log('Process new storylines.');
 
   api.storylines.findByQuery({hasProcessed: false}, null, function(storylines){
     if (storylines.length) {
