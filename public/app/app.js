@@ -1,0 +1,4 @@
+var App = {
+  models: {},
+  views: {}
+};
