@@ -1,5 +1,7 @@
 'use strict';
 
 exports.render = function(req, res) {
-  res.send('OK');
+  res.render('index', {
+    title: 'Currator'
+  });
 };
