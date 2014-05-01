@@ -15,7 +15,9 @@ var NewsItemSchema = new Schema({
 	title: String,
 	description: String,
 	dateCreated: Date,
-	identifier: String
+	identifier: String,
+	images: Array,
+	shortTitle: String
 });
 
 mongoose.model('NewsItem', NewsItemSchema);

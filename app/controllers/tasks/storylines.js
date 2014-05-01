@@ -141,6 +141,7 @@ function processNewsItems(event, newsItemsData) {
         title: data.title,
         description: data.description,
         dateCreated: data.dateCreated,
+        thumbnail: data.thumbnail,
         id: data['@id'],
         identifier: data.identifier
       };
@@ -148,10 +149,10 @@ function processNewsItems(event, newsItemsData) {
       newsItems.push(newsItem);
 
       api.newsItems.findById(newsItem['@id'], function(newsItem){
-        if (!event) {
+        if (!newsItem) {
           processNewsItem(data);    
         } else {
-          console.log('Event already exists');
+          console.log('NewsItem already exists');
         }
       });
       
@@ -188,6 +189,7 @@ function processNewsItem(data) {
     hasProcessed: false,
     product: data.product,
     title: data.title,
+    thumbnail: data.thumbnail,
     description: data.description,
     dateCreated: data.dateCreated,
     identifier: data.identifier
