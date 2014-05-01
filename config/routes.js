@@ -9,6 +9,9 @@ module.exports = function(app) {
     //API
   	var api = require('../app/controllers/api');
 
+    
+    app.get('/api/storylines-expanded/:id', api.storylinesExpanded.get);
+
   	app.get('/api/storylines', api.storylines.list);
   	app.post('/api/storylines', api.storylines.create);
   	app.get('/api/storylines/:id', api.storylines.get);

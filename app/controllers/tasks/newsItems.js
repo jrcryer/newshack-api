@@ -13,7 +13,7 @@ var httpProxy = process.env.http_proxy;
  */
 exports.processNew = function() {
       
-  console.log('Process new news items.');
+  //console.log('Process new news items.');
 
   api.newsItems.findByQuery({hasProcessed: false}, null, function(newsItems){
     if (newsItems.length) {
