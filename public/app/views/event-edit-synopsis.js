@@ -8,9 +8,9 @@ define([
   Template
 ){
 
-  var EventEditIsKeyView = Backbone.View.extend({
+  var EventEditSynopsisView = Backbone.View.extend({
 
-    template: Template['app/template/event-edit-iskey.hbs'],
+    template: Template['app/template/event-edit-synopsis.hbs'],
 
     el: "#editor-content",
 
@@ -23,14 +23,13 @@ define([
       var html = this.template(this.model);
       $(this.el).append(html);
 
-      $(this.el).find('#event-iskey').on('change', function(){
-        var value = _this.$el.find('#event-iskey').is(':checked');
-        _this.model.isKey = value;
+      $(this.el).find('#event-synopsis').on('change', function(){
+        _this.model.synopsis = _this.$el.find('#event-synopsis').val();
       });
       return this;
     }
 
   });
 
-  return EventEditIsKeyView;
+  return EventEditSynopsisView;
 });
