@@ -70,15 +70,27 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["JST"]["app/template/project-new.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h2>Create a new Project</h2>\n<form>\n	<label>Project name:</label>\n	<input id=\"project-name\" type=\"text\" name=\"name\" placeholder=\"Project name\" />\n	<label>Storyline:</label>\n	<select id=\"project-storyline\">\n		<% _.each(storylines, function(storyline){ %>\n			<option value=\"<%= storyline._id %>\"><%= storyline.title %></option>\n		<% }); %>\n	</select>\n</form>";
+  });
+
 this["JST"]["app/template/project.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  return escapeExpression(stack1);
+  buffer += escapeExpression(stack1)
+    + " - "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.storyline)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1));
+  return buffer;
   });
 
 this["JST"]["app/template/projects.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -87,7 +99,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Load Project</h1>\n";
+  return "<div id=\"new-project\"></div>\n<div id=\"projects\">\n	<h2>Load Project</h2>\n</div>\n\n\n";
   });
 
 this["JST"]["app/template/storyline-edit-synopsis.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

@@ -95,7 +95,7 @@ exports.populateProjectFromStoryline = function(projectModel, callback) {
  * Update user
  */
 exports.update = function(req, res) {
-  Project.findOne({uri: req.params.uri}, function(err, project){
+  Project.findOne({_id: req.params.id}, function(err, project){
     if (!err) {
       project.increment();
       if (req.body.title) {

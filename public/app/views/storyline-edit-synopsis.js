@@ -24,7 +24,6 @@ define([
 
     render: function () {
       var _this = this;
-      console.log('model', this.model);
       var html = this.template(this.model);
       $(this.el).append(html);
 
@@ -35,9 +34,7 @@ define([
     },
 
     updateValue: function() {
-      console.log('update value', this.$el.find('input').val());
       this.model.title = this.$el.find('input').val();
-      console.log('this.model', this.model);
     }
 
   });

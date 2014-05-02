@@ -26,7 +26,8 @@ define([
 	'views/default', 
   'models/projects',
 	'models/project',
-  'models/storyline'
+  'models/storyline',
+  'models/storylines'
 ], function(
 	$, 
 	Backbone, 
@@ -34,7 +35,8 @@ define([
 	DefaultView,
   ProjectsModel,
 	ProjectModel,
-  StorylineModel
+  StorylineModel,
+  StorylinesModel
 ){
 
   var AppRouter = Backbone.Router.extend({
@@ -58,6 +60,13 @@ define([
 
     function loadProject(id) {
       var _this = this;
+
+      var storylines = new StorylinesModel();
+      storylines.fetch({
+        success: function(){
+          window.storylines = storylines;
+        }
+      });
 
       var project = new ProjectModel({id: id}), storyline;
 

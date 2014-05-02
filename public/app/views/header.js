@@ -24,7 +24,6 @@ define([
       this.model = model;
 
       Backbone.on('project:edit', function(project, storyline){
-        console.log('edit', project);
         $(_this.el).find('.title').html('Edit Project: ' +project.get('title'));
       });
       Backbone.on('project:load', function(project, storyline){
