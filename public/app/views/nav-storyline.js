@@ -2,12 +2,14 @@ define([
   'jquery', 
   'backbone', 
   'template',
+  'moment',
   'views/nav-event', 
   'models/project'
 ], function(
   $, 
   Backbone, 
   Template,
+  moment,
   NavEventView,
   ProjectModel
 ){

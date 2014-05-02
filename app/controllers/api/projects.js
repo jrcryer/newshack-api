@@ -65,7 +65,7 @@ exports.create = function(req, res) {
 };
 
 exports.populateProjectFromStoryline = function(projectModel, callback) {
-  var storyline, storylineData = {};
+  var storyline, storylineData = {}, synopsis;
   api.storylines.findByQuery({_id: projectModel.storylineId}, null, function(storylines) {
     if (storylines && storylines.length) {
       storyline = storylines[0];
@@ -75,10 +75,16 @@ exports.populateProjectFromStoryline = function(projectModel, callback) {
       storylineData.events = [];
       if (storyline.events) {
         storyline.events.forEach(function(event){
+          if (event.newsItems && event.newsItems.length > 0) {
+            synopsis = event.newsItems[0].description;
+          } else {
+            synopsis = '';
+          }
           storylineData.events.push({
             id: event.id,
             eventStartDate: event.eventStartDate,
-            preferredLabel: event.preferredLabel
+            preferredLabel: event.preferredLabel,
+            synopsis: synopsis
           });
         });
       }

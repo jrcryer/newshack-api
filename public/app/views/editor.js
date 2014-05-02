@@ -144,7 +144,7 @@ define([
       view.render();
       view = new EventEditPreferredLabelView(projectEvent);
       view.render();
-      view = new EventEditSynopsisView(projectEvent);
+      view = new EventEditSynopsisView(projectEvent, expandedEvent);
       view.render();
       view = new EventEditThumbnailView(projectEvent);
       view.render();

@@ -14,8 +14,11 @@ define([
 
     el: "#editor-content",
 
-    initialize: function (model) {
+    initialize: function (model, expandedEvent) {
       this.model = model;
+      if (!this.model.synopsis && expandedEvent.newsItems && expandedEvent.newsItems.length > 0) {
+        this.model.synopsis = expandedEvent.newsItems[0].description;
+      }
     },
 
     render: function () {

@@ -2,12 +2,14 @@ define([
   'jquery', 
   'backbone', 
   'template',
+  'moment',
   'views/default', 
   'models/project'
 ], function(
   $, 
   Backbone, 
   Template,
+  moment,
   DefaultView, 
   ProjectModel
 ){
@@ -27,6 +29,7 @@ define([
     },
 
     render: function () {
+      this.model.dateFormatted = moment(this.model.eventStartDate).format('MMM Do YYYY');
       var html = this.template(this.model);
       $(this.el).append(html);
       return this;

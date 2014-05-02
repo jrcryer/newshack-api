@@ -7,6 +7,7 @@ var App = {
 require.config({
   paths: {
     'app': '/app',
+    'moment': '/components/moment/moment',
   	'jquery': '/components/jquery/dist/jquery.min',
   	'underscore': '/components/underscore/underscore',
   	'backbone': '/components/backbone/backbone',
