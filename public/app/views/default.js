@@ -2,12 +2,14 @@ define([
   'jquery', 
   'backbone', 
   'template',
+  'views/header',
   'views/nav-storyline',
   'views/editor'
 ], function(
   $, 
   Backbone, 
   Template,
+  HeaderView,
   NavStorylineView,
   EditorView
 ){
@@ -25,6 +27,9 @@ define([
     render: function () {
       var html = this.template(this.model);
       $(this.el).append(html);
+
+      var view = new HeaderView();
+      view.render();
     },
 
     setProject: function(model) {
