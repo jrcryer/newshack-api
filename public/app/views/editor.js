@@ -7,6 +7,7 @@ define([
   'views/storyline-summary',
   'views/storyline-edit-title',
   'views/storyline-edit-synopsis',
+  'views/storyline-edit-thumbnail',
   'views/event-summary',
   'views/event-edit-preferredlabel'
 ], function(
@@ -18,6 +19,7 @@ define([
   StorylineSummaryView,
   StorylineEditTitleView,
   StorylineEditSynopsisView,
+  StorylineEditThumbnailView,
   EventSummaryView,
   EventEditPreferredLabelView
 ){
@@ -112,6 +114,8 @@ define([
       view = new StorylineEditTitleView(projectStoryline);
       view.render();
       view = new StorylineEditSynopsisView(projectStoryline);
+      view.render();
+      view = new StorylineEditThumbnailView(projectStoryline);
       view.render();
     },
 
