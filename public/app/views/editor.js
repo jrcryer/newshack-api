@@ -8,10 +8,12 @@ define([
   'views/storyline-edit-title',
   'views/storyline-edit-synopsis',
   'views/storyline-edit-thumbnail',
+  'views/storyline-edit-newsitems',
   'views/event-summary',
   'views/event-edit-iskey',
   'views/event-edit-thumbnail',
-  'views/event-edit-preferredlabel'
+  'views/event-edit-preferredlabel',
+  'views/event-edit-synopsis'
 ], function(
   $, 
   Backbone, 
@@ -22,10 +24,12 @@ define([
   StorylineEditTitleView,
   StorylineEditSynopsisView,
   StorylineEditThumbnailView,
+  StorylineEditNewsItemsView,
   EventSummaryView,
   EventEditIsKeyView,
   EventEditThumbnailView,
-  EventEditPreferredLabelView
+  EventEditPreferredLabelView,
+  EventEditSynopsisView
 ){
 
   var EditorView = Backbone.View.extend({
@@ -121,6 +125,12 @@ define([
       view.render();
       view = new StorylineEditThumbnailView(projectStoryline);
       view.render();
+      view = new StorylineEditNewsItemsView({
+        projectStoryline: projectStoryline,
+        expandedStoryline: expandedStoryline
+      });
+      view.render();
+      
     },
 
     showEvent: function(projectEvent, expandedEvent) {
@@ -131,6 +141,8 @@ define([
       view = new EventEditIsKeyView(projectEvent);
       view.render();
       view = new EventEditPreferredLabelView(projectEvent);
+      view.render();
+      view = new EventEditSynopsisView(projectEvent);
       view.render();
       view = new EventEditThumbnailView(projectEvent);
       view.render();

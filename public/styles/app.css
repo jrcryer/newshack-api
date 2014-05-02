@@ -163,7 +163,6 @@ header .inline-list li {
 	width: 160px;
 	clear: both;
 	margin-bottom: 30px;
-<<<<<<< HEAD
 	color: #FFF;
 	padding: 16px;
 	border: 0;
@@ -177,7 +176,6 @@ header .inline-list li {
 }
 .fi-folder-add, .fi-upload {
 	padding: 0 4px 0 0;
-=======
 }
 #editor .storyline-image, 
 #editor .event-image {
@@ -188,5 +186,7 @@ header .inline-list li {
 #editor .event-image img{
 	max-width: 100%;
 	max-height: 100%;
->>>>>>> 9bc9b35d262b84684834b7186b263c0762ae5243
+}
+#storyline-edit-newsitems input {
+	width: 20px;
 }
