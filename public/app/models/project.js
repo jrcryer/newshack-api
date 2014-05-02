@@ -12,6 +12,7 @@ define([
 	  },
 	  toJSON: function(){
 	  	return {
+	  		id: this.get('_id'),
 	  		title: this.get('title'),
 	  		storyline: this.get('storyline')
 	  	}

@@ -40,7 +40,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<p class=\"title\">Storyline Editor</p>\n<ul class=\"inline-list\">\n  <li><a class=\"load\">Load project</a></li>\n  <li><a class=\"save\">Save project</a></li>\n</ul>\n\n";
+  return "<p class=\"title\">Storyline Editor</p>\n<ul class=\"inline-list\">\n  <li><a class=\"preview\">Preview project</a></li>\n  <li><a class=\"load\">Load project</a></li>\n  <li><a class=\"save\">Save project</a></li>\n</ul>\n\n";
   });
 
 this["JST"]["app/template/nav-event.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -94,6 +94,40 @@ function program1(depth0,data) {
   stack1 = helpers.each.call(depth0, (depth0 && depth0.storylines), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n	</select>\n	<br/><br/>\n	<input id=\"project-submit\" type=\"submit\" value=\"Create Project\" />\n</form>";
+  return buffer;
+  });
+
+this["JST"]["app/template/project-preview.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<h2>Preview Project</h2>\n<p><a href=\"http://";
+  if (helper = helpers.host) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.host); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/preview/side/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" target=\"_blank\">Preview in Article.</a></p>\n<p><a href=\"http://";
+  if (helper = helpers.host) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.host); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/preview/stream/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" target=\"_blank\">Preview in Stream.</a></p>\n<p><a href=\"http://";
+  if (helper = helpers.host) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.host); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/preview/full/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" target=\"_blank\">Preview in full width.</a></p>";
   return buffer;
   });
 

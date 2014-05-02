@@ -15,6 +15,7 @@ define([
     el: "header",
 
     events: {
+      'click .preview': 'previewProject',
       'click .load': 'loadProject',
       'click .save': 'saveProject'
     },
@@ -34,6 +35,10 @@ define([
     render: function () {
       var html = this.template();
       $(this.el).append(html);
+    },
+
+    previewProject: function () {
+      Backbone.trigger('project:preview', window.project._id);
     },
 
     loadProject: function () {

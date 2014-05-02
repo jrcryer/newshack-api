@@ -2,6 +2,7 @@ define([
   'jquery', 
   'backbone', 
   'template',
+  'views/project-preview',
   'views/storyline-summary',
   'views/storyline-edit-title',
   'views/storyline-edit-synopsis',
@@ -11,6 +12,7 @@ define([
   $, 
   Backbone, 
   Template,
+  ProjectPreviewView,
   StorylineSummaryView,
   StorylineEditTitleView,
   StorylineEditSynopsisView,
@@ -66,12 +68,22 @@ define([
           _this.getExpandedEvent(event.id)
         );
       });
+      Backbone.on('project:preview', function(id){
+        _this.showPreview(id);
+      });
     },
 
     render: function () {
       var html = this.template(this.model);
       $(this.el).append(html);
       return this;
+    },
+
+    showPreview: function(projectId) {
+      var view;
+      this.$el.find('#editor-content').html('');
+      view = new ProjectPreviewView(window.project);
+      view.render();
     },
 
     showStoryline: function(projectStoryline, expandedStoryline) {
