@@ -76,6 +76,21 @@ header ul {
 header .inline-list li {
 	margin-left: 10px;
 }
+header .save {
+	width: 120px;
+	text-align: center;
+}
+header .save.saving {
+	background: #0000FF;
+}
+header .save.error {
+	background: #FF0000;
+	color: #fff;
+}
+header .save.success {
+	background: #00FF00;
+	color: #fff;
+}
 
 /*
  * Nav

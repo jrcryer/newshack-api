@@ -25,6 +25,19 @@ define([
       var _this = this;
       this.model = model;
 
+      Backbone.on('project:save-start', function(){
+        $(_this.el).find('.save').addClass('saving').text('Saving');
+      });
+      Backbone.on('project:save-end', function(){
+        $(_this.el).find('.save').removeClass('saving').addClass('success').text('Saved');
+        setTimeout(function(){
+          $(_this.el).find('.save').removeClass('success').text('Save Project');
+        }, 3000);
+      });
+      Backbone.on('project:save-error', function(){
+        $(_this.el).find('.save').addClass('error').text('Error');
+      });
+
       Backbone.on('project:loaded', function(project, storyline){
         $(_this.el).find('.title').html('<span class="logo">Storyline Editor</span> <span class="text">Project: ' +project.get('title') +'</span>');
       });
@@ -56,7 +69,15 @@ define([
     saveProject: function () {
       if (window.projectModel) {
         window.projectModel.set('storyline', window.project.storyline);
-        window.projectModel.save();
+        Backbone.trigger('project:save-start');
+        window.projectModel.save(null, {
+          success: function(){
+            Backbone.trigger('project:save-end');
+          },
+          error: function(){
+            Backbone.trigger('project:save-error');
+          }
+        });
       }
     }
 
