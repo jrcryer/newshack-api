@@ -18,20 +18,20 @@ define([
       this.model = model;
     },
 
-    addNewsItemToStoryline: function(){
+    addNewsItemToEvent: function(){
       var identifier = this.model.newsItem.identifier;
       var isInArray = false;
-      this.model.projectStoryline.newsItems.forEach(function(newsItem){
+      this.model.eventStoryline.newsItems.forEach(function(newsItem){
         if (newsItem.identifier === identifier) {
           isInArray = true;
         }
       });
       if (!isInArray) {
-        this.model.projectStoryline.newsItems.push(this.model.newsItem);
+        this.model.eventStoryline.newsItems.push(this.model.newsItem);
       }
     },
 
-    removeNewsItemFromStoryline: function(){
+    removeNewsItemFromEvent: function(){
       var identifier = this.model.newsItem.identifier;
       var isInArray = false, matchedIndex;
       this.model.projectStoryline.newsItems.forEach(function(newsItem, index){
@@ -41,7 +41,7 @@ define([
         }
       });
       if (isInArray) {
-        this.model.projectStoryline.newsItems = this.model.projectStoryline.newsItems.slice(matchedIndex, matchedIndex);
+        this.model.eventStoryline.newsItems = this.model.projectStoryline.newsItems.slice(matchedIndex, matchedIndex);
       }
     },
 
@@ -52,9 +52,9 @@ define([
       $(this.el).find('input').on('change', function(){
         var value = _this.$el.find('input').is(':checked');
         if (value) {
-          _this.addNewsItemToStoryline();
+          _this.addNewsItemToEvent();
         } else {
-          _this.removeNewsItemFromStoryline();
+          _this.removeNewsItemFromEvent();
         }
       });
       return this;
@@ -77,7 +77,7 @@ define([
 
     getEventNewsItem: function(identifier) {
       var matchedNewsItem;
-      this.model.projectEvent.newsItems.forEach(function(event){
+      this.model.projectEvent.newsItems.forEach(function(newsItem){
         if (identifier === newsItem.identifier) {
           matchedNewsItem = newsItem;
         }
