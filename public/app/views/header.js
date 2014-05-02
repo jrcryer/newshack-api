@@ -28,6 +28,9 @@ define([
       Backbone.on('project:loaded', function(project, storyline){
         $(_this.el).find('.title').html('<span class="logo">Storyline Editor</span> <span class="text">Project: ' +project.get('title') +'</span>');
       });
+      Backbone.on('project:edit-title', function(title){
+        $(_this.el).find('.title').html('Project: ' +title);
+      });
       Backbone.on('project:load', function(project, storyline){
         $(_this.el).find('.title').html('<span class="logo">Storyline Editor</span>');
       });

@@ -135,12 +135,23 @@ header .inline-list li {
 	font-size: 0.8em;
 	margin: 10px 0 0 0;
 	padding: 0;
+	display: block;
 }
 #editor input,
 #editor textarea {
+	clear: both;
 	width: 420px;
 	padding: 3px;
 	font-size: 1em;
+}
+#editor .event-iskey {
+	position: relative;
+}
+#editor .event-iskey input {
+	position: absolute;
+	top: 2px;
+	left: 95px;
+	padding: 3px;
 }
 #editor textarea {
 	height: 220px;
@@ -152,6 +163,7 @@ header .inline-list li {
 	width: 160px;
 	clear: both;
 	margin-bottom: 30px;
+<<<<<<< HEAD
 	color: #FFF;
 	padding: 16px;
 	border: 0;
@@ -165,4 +177,16 @@ header .inline-list li {
 }
 .fi-folder-add, .fi-upload {
 	padding: 0 4px 0 0;
+=======
+}
+#editor .storyline-image, 
+#editor .event-image {
+	width: 320px;
+	height: 240px;
+}
+#editor .storyline-image img, 
+#editor .event-image img{
+	max-width: 100%;
+	max-height: 100%;
+>>>>>>> 9bc9b35d262b84684834b7186b263c0762ae5243
 }

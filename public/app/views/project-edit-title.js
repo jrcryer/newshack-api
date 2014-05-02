@@ -27,6 +27,7 @@ define([
         var title = _this.$el.find('#project-title').val();
         _this.model.title = title;
         window.projectModel.set('title', title)
+        Backbone.trigger('project:edit-title', title);
       });
       return this;
     }
