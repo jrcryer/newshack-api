@@ -2,6 +2,6 @@
 
 exports.render = function(req, res) {
   res.render('index', {
-    title: 'Currator'
+    title: 'Storyline Tool'
   });
 };

@@ -15,11 +15,21 @@ define([
     el: "header",
 
     events: {
+      'click .load': 'loadProject',
       'click .save': 'saveProject'
     },
 
     initialize: function (model) {
+      var _this = this;
       this.model = model;
+
+      Backbone.on('project:edit', function(project, storyline){
+        console.log('edit', project);
+        $(_this.el).find('.title').html('Edit Project: ' +project.get('title'));
+      });
+      Backbone.on('project:load', function(project, storyline){
+        $(_this.el).find('.title').html('Storyline Editor');
+      });
     },
 
     render: function () {
@@ -27,12 +37,15 @@ define([
       $(this.el).append(html);
     },
 
+    loadProject: function () {
+      Backbone.trigger('project:load');
+    },
+
     saveProject: function () {
-      var storyline = window.project.get('storyline');
-      storyline.title = 'Saved storyline';
-      window.project.set('storyline', storyline);
-      window.project.set('title', 'Saved project');
-      window.project.save();
+      if (window.projectModel) {
+        window.projectModel.set('storyline', window.project.storyline);
+        window.projectModel.save();
+      }
     }
 
   });

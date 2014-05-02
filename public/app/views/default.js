@@ -3,6 +3,7 @@ define([
   'backbone', 
   'template',
   'views/header',
+  'views/projects',
   'views/nav-storyline',
   'views/editor'
 ], function(
@@ -10,6 +11,7 @@ define([
   Backbone, 
   Template,
   HeaderView,
+  ProjectsView, 
   NavStorylineView,
   EditorView
 ){
@@ -30,15 +32,22 @@ define([
 
       var view = new HeaderView();
       view.render();
-    },
-
-    setProject: function(model) {
-      this.model = model;
-      var navView = new NavStorylineView(this.model);
-      navView.render();
 
       var editorView = new EditorView();
       editorView.render();
+    },
+
+    showProjects: function(model) {
+      var view = new ProjectsView(model);
+      view.render();
+    },
+
+    setProjectAndStoryline: function(data) {
+      var navView = new NavStorylineView({
+        storyline: data.storyline
+      });
+      navView.render();
+      navView.$el.find('li.storyline').trigger('click');
     }
 
   });
