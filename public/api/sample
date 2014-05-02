@@ -1,0 +1,52 @@
+{
+   "storyline":{
+      "title":"Israeli-Palestinian peace process",
+      "synopsis":"The international effort for peace to be agreed to in both the Arab–Israeli conflict and in the Palestinian–Israeli conflict.",
+      "uri":"http://www.bbc.co.uk/things/a210e08e-74b4-4661-9928-ee8c3e06d554",
+      "events":[
+         {
+            "id":"http://www.bbc.co.uk/things/f24f25b2-1c64-424a-8018-f380e0d3bce7",
+            "eventStartDate":"2010-09-02T00:00:00+01:00",
+            "preferredLabel":"US presses for reform in Israeli-Palestinian talks"
+         },
+         {
+            "id":"http://www.bbc.co.uk/things/4747bca2-7d8c-4e3b-8dfb-d4148fe168cb",
+            "eventStartDate":"2011-01-24T00:00:00+00:00",
+            "preferredLabel":"West Bank Settlements controversy"
+         },
+         {
+            "id":"http://www.bbc.co.uk/things/f6b87350-a54e-4df7-a8d4-42b2671f3680",
+            "eventStartDate":"2012-11-25T00:00:00+00:00",
+            "preferredLabel":"Kerry seeks framework for Israeli-Palestinian peace"
+         },
+         {
+            "id":"http://www.bbc.co.uk/things/b79e5a66-832f-4083-9768-d13d51ceb3c0",
+            "eventStartDate":"2011-05-20T00:00:00+01:00",
+            "preferredLabel":"Netanyahu visits Washington"
+         },
+         {
+            "id":"http://www.bbc.co.uk/things/a6abbf3d-4772-48a0-98cc-fefb84fe500a",
+            "eventStartDate":"2011-09-15T00:00:00+01:00",
+            "preferredLabel":"Palestinians apply to join UN"
+         }
+      ],
+      "topics":[
+         {
+            "id":"http://www.bbc.co.uk/things/f24f25b2-1c64-424a-8018-f380e0d3bce7",
+            "eventStartDate":"2010-09-02T00:00:00+01:00",
+            "preferredLabel":"USA"
+         },
+         {
+            "id":"http://www.bbc.co.uk/things/4747bca2-7d8c-4e3b-8dfb-d4148fe168cb",
+            "eventStartDate":"2011-01-24T00:00:00+00:00",
+            "preferredLabel":"Israeli-Palestinian"
+         }
+      ]
+   },
+   "storylineId":"5362c1a6c1920e020051a809",
+   "title":"New project",
+   "created":"2014-05-01T21:50:38.574Z",
+   "modified":"2014-05-01T21:50:38.574Z",
+   "_id":"5362c1aec1920e020051a836",
+   "__v":0
+}
