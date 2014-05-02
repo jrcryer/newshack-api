@@ -32,7 +32,7 @@ define([
 	DefaultView, 
 	ProjectModel
 ){
-console.log('DefaultView1', DefaultView);
+
   var AppRouter = Backbone.Router.extend({
     routes: {
       "projects/:id": "project",

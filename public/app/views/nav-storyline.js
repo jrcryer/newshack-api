@@ -2,45 +2,50 @@ define([
   'jquery', 
   'backbone', 
   'template',
-  'views/event', 
+  'views/nav-event', 
   'models/project'
 ], function(
   $, 
   Backbone, 
   Template,
-  EventView
+  NavEventView,
+  ProjectModel
 ){
 
-  var StorylineNavView = Backbone.View.extend({
+  var NavStorylineView = Backbone.View.extend({
 
     template: Template['app/template/nav-storyline.hbs'],
 
     el: "#storyline-nav",
 
+    events: {
+      'click .storyline': 'onClick'
+    },
+
     initialize: function (model) {
       this.model = model;
-      this.render();
     },
 
     render: function () {
 
       var html = this.template(this.model.toJSON().storyline);
       $(this.el).append(html);
-/*
-      var creativeWorks = ('creativeWorks');
+
       var html = $('<ul class="events"/>'), eventView;
       this.model.get('storyline').events.forEach(function(event){
-        //creativeWork.dateCreatedString = moment(creativeWork.dateCreated).format('MMMM Do YYYY');
-        //creativeWorkModel = new EventModel(creativeWork);
-        eventView = new EventView({model: event});
+        eventView = new NavEventView(event);
         html.append(eventView.render().el);
       });
       this.$el.find('li.storyline').after(html);
-*/
+
+    },
+
+    onClick: function () {
+      Backbone.trigger('storyline:select', this.model.toJSON());
     }
 
   });
 
-  return StorylineNavView;
+  return NavStorylineView;
 
 });
