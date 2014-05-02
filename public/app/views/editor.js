@@ -13,7 +13,8 @@ define([
   'views/event-edit-iskey',
   'views/event-edit-thumbnail',
   'views/event-edit-preferredlabel',
-  'views/event-edit-synopsis'
+  'views/event-edit-synopsis',
+  'views/event-edit-newsitems',
 ], function(
   $, 
   Backbone, 
@@ -29,7 +30,8 @@ define([
   EventEditIsKeyView,
   EventEditThumbnailView,
   EventEditPreferredLabelView,
-  EventEditSynopsisView
+  EventEditSynopsisView,
+  EventEditNewsItemsView
 ){
 
   var EditorView = Backbone.View.extend({
@@ -145,6 +147,11 @@ define([
       view = new EventEditSynopsisView(projectEvent);
       view.render();
       view = new EventEditThumbnailView(projectEvent);
+      view.render();
+      view = new EventEditNewsItemsView({
+        projectEvent: projectEvent,
+        expandedEvent: expandedEvent
+      });
       view.render();
     }
 
