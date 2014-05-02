@@ -9,6 +9,7 @@ define([
   'views/storyline-edit-synopsis',
   'views/storyline-edit-thumbnail',
   'views/event-summary',
+  'views/event-edit-iskey',
   'views/event-edit-thumbnail',
   'views/event-edit-preferredlabel'
 ], function(
@@ -22,6 +23,7 @@ define([
   StorylineEditSynopsisView,
   StorylineEditThumbnailView,
   EventSummaryView,
+  EventEditIsKeyView,
   EventEditThumbnailView,
   EventEditPreferredLabelView
 ){
@@ -126,6 +128,8 @@ define([
       this.$el.find('#editor-content').html(
         '<h2>Edit Event: ' +expandedEvent.preferredLabel +'</h2>'
       );
+      view = new EventEditIsKeyView(projectEvent);
+      view.render();
       view = new EventEditPreferredLabelView(projectEvent);
       view.render();
       view = new EventEditThumbnailView(projectEvent);
