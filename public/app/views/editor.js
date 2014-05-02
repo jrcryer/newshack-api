@@ -9,6 +9,7 @@ define([
   'views/storyline-edit-synopsis',
   'views/storyline-edit-thumbnail',
   'views/event-summary',
+  'views/event-edit-thumbnail',
   'views/event-edit-preferredlabel'
 ], function(
   $, 
@@ -21,6 +22,7 @@ define([
   StorylineEditSynopsisView,
   StorylineEditThumbnailView,
   EventSummaryView,
+  EventEditThumbnailView,
   EventEditPreferredLabelView
 ){
 
@@ -125,6 +127,8 @@ define([
         '<h2>Edit Event: ' +expandedEvent.preferredLabel +'</h2>'
       );
       view = new EventEditPreferredLabelView(projectEvent);
+      view.render();
+      view = new EventEditThumbnailView(projectEvent);
       view.render();
     }
 
