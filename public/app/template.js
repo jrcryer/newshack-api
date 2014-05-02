@@ -73,10 +73,28 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["JST"]["app/template/project-new.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
   
+  var buffer = "", stack1, helper;
+  buffer += "\n			<option value=\"";
+  if (helper = helpers._id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0._id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n		";
+  return buffer;
+  }
 
-
-  return "<h2>Create a new Project</h2>\n<form>\n	<label>Project name:</label>\n	<input id=\"project-name\" type=\"text\" name=\"name\" placeholder=\"Project name\" />\n	<label>Storyline:</label>\n	<select id=\"project-storyline\">\n		<% _.each(storylines, function(storyline){ %>\n			<option value=\"<%= storyline._id %>\"><%= storyline.title %></option>\n		<% }); %>\n	</select>\n</form>";
+  buffer += "<h2>Create a new Project</h2>\n<form>\n	<label>Project name:</label>\n	<input id=\"project-name\" type=\"text\" name=\"name\" placeholder=\"Project name\" />\n	<label>Storyline:</label>\n	<select id=\"project-storyline\">\n		";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.storylines), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n	</select>\n	<br/><br/>\n	<input id=\"project-submit\" type=\"submit\" value=\"Create Project\" />\n</form>";
+  return buffer;
   });
 
 this["JST"]["app/template/project.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

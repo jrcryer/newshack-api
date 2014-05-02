@@ -106,3 +106,11 @@ header .inline-list li {
 #editor textarea {
 	height: 220px;
 }
+#editor select {
+	width: 420px;
+}
+#editor #project-submit {
+	width: 160px;
+	clear: both;
+	margin-bottom: 30px;
+}

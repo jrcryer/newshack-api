@@ -44,6 +44,7 @@ exports.list = function(req, res) {
  */
 exports.create = function(req, res) {
   var now = new Date();
+
   var project = new Project({
     storylineId: req.body.storylineId,
     title: req.body.title,
@@ -65,11 +66,9 @@ exports.create = function(req, res) {
 
 exports.populateProjectFromStoryline = function(projectModel, callback) {
   var storyline, storylineData = {};
-  console.log('populateProjectFromStoryline', projectModel.storylineId);
   api.storylines.findByQuery({_id: projectModel.storylineId}, null, function(storylines) {
     if (storylines && storylines.length) {
       storyline = storylines[0];
-      console.log('storyline', storyline.title);
       storylineData.title = storyline.title;
       storylineData.synopsis = storyline.synopsis;
       storylineData.uri = storyline.uri;

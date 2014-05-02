@@ -58,15 +58,22 @@ define([
       });
     };
 
-    function loadProject(id) {
-      var _this = this;
-
+    function loadStorylines(callback) {
       var storylines = new StorylinesModel();
       storylines.fetch({
-        success: function(){
-          window.storylines = storylines;
+        success: function(model){
+          var data = [];
+          for (var index in storylines.attributes){
+            data.push(storylines.attributes[index]);
+          }
+          window.storylines = data;
+          callback();
         }
-      });
+      });        
+    }
+
+    function loadProject(id) {
+      var _this = this;
 
       var project = new ProjectModel({id: id}), storyline;
 
@@ -97,10 +104,21 @@ define([
       window.project = null;
       window.storylineModel = null;
       window.storyline = null;
-      listProjects();
+      if (!window.storylines) {
+        loadStorylines(function(){
+          listProjects();
+        });
+      } else {
+        listProjects();
+      }
+      
     });
     routerInstance.on('route:project', function(id){
       loadProject(id);
+    });
+
+    Backbone.on('project:created', function(id){
+      routerInstance.navigate("/projects/" +id, {trigger: true});
     });
 
     Backbone.on('project:load', function(){

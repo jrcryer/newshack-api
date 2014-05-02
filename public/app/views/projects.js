@@ -28,9 +28,23 @@ define([
       return this;
     },
 
-    onSubmit: function () {
-      console.log('SUBMIT FORM');
-      //Backbone.trigger('project:select', this.model);
+    onSubmit: function (event) {
+      event.preventDefault();
+      var title = $(this.el).find('#project-name').val();
+      var storylineId = $(this.el).find('#project-storyline').val();
+      if (title.length > 0) {
+        $.ajax({
+          url: '/api/projects',
+          type: 'POST',
+          dataType: 'json', 
+          data: {title: title, storylineId: storylineId},
+          success: function(response) {
+            if (response && response._id) {
+              Backbone.trigger('project:created', response._id);
+            }
+          } 
+        })
+      }
     }
 
   });
@@ -78,8 +92,8 @@ define([
       html = this.template(this.model.storyline);
       $(this.el).html(html);
 
-      //var newProjectView = new NewProjectView();
-      //newProjectView.render();
+      var newProjectView = new NewProjectView();
+      newProjectView.render();
 
       var index, html = $('<ul class="projects"/>'), projectView;
       for (index in this.model.attributes) {
