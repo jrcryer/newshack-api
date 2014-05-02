@@ -2,12 +2,14 @@ define([
   'jquery', 
   'backbone', 
   'template',
-  'views/storylinenav'
+  'views/nav-storyline',
+  'views/editor'
 ], function(
   $, 
   Backbone, 
   Template,
-  StorylineNavView
+  NavStorylineView,
+  EditorView
 ){
 
   var DefaultView = Backbone.View.extend({
@@ -27,7 +29,11 @@ define([
 
     setProject: function(model) {
       this.model = model;
-      var navView = new StorylineNavView(this.model);
+      var navView = new NavStorylineView(this.model);
+      navView.render();
+
+      var editorView = new EditorView();
+      editorView.render();
     }
 
   });

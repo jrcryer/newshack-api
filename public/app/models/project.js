@@ -1,11 +1,9 @@
 define([
   'jquery', 
-  'backbone', 
-  'views/storylinenav'
+  'backbone'
 ], function(
   $, 
-  Backbone, 
-  StorylineNavView
+  Backbone
 ){
 
 	var ProjectModel = Backbone.Model.extend({

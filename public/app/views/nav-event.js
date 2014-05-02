@@ -12,28 +12,30 @@ define([
   ProjectModel
 ){
 
-  var StorylineNavEventView = Backbone.View.extend({
+  var NavEventView = Backbone.View.extend({
 
     template: Template['app/template/nav-event.hbs'],
 
-    el: "#storyline-events",
+    tagName: 'li',
+
+    events: {
+      'click': 'onClick'
+    },
 
     initialize: function (model) {
       this.model = model;
-
-      this.render();
-
-
-      this.model.get('creativeWorks').forEach(function (item) {
-        new App.views.CreativeWork(new App.models.CreativeWork(item));
-      });
     },
 
     render: function () {
       var html = this.template(this.model);
       $(this.el).append(html);
+      return this;
+    },
+
+    onClick: function () {
+      Backbone.trigger('event:select', this.model);
     }
   });
 
-  return StorylineNavEventView;
+  return NavEventView;
 });

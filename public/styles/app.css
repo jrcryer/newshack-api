@@ -11,7 +11,13 @@ header {
 }
 
 #storyline-nav {
+	position: absolute;
+	
 	width: 280px;
 	background: #cecece;
 	border-right: #666;
+}
+
+#editor {
+	margin-left: 300px;
 }
