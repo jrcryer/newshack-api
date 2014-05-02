@@ -40,7 +40,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<p class=\"title\">Storyline Editor</p>\n<ul class=\"inline-list\">\n  <li><a class=\"preview\">Preview project</a></li>\n  <li><a class=\"load\">Load project</a></li>\n  <li><a class=\"save\">Save project</a></li>\n</ul>\n\n";
+  return "<p class=\"title\"><span class=\"logo\">Storyline Editor</span> <span class=\"project\"></span></p>\n<ul class=\"inline-list\">\n  <li><a class=\"preview\">Preview project</a></li>\n  <li><a class=\"load\">Load project</a></li>\n  <li><a class=\"save\">Save project</a></li>\n</ul>\n\n";
   });
 
 this["JST"]["app/template/nav-event.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -62,7 +62,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<ul>\n	<li class=\"storyline\">";
+  buffer += "<ul>\n	<li class=\"storyline\"><i class=\"fi-folder-add\"></i>";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -104,7 +104,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  buffer += "<h2>Create a new Project</h2>\n<form>\n	<label>Project name:</label>\n	<input id=\"project-name\" type=\"text\" name=\"name\" placeholder=\"Project name\" />\n	<label>Storyline:</label>\n	<select id=\"project-storyline\">\n		";
+  buffer += "<h2><i class=\"fi-upload\"></i> Create a new Project</h2>\n<form>\n	<label>Project name:</label>\n	<input id=\"project-name\" type=\"text\" name=\"name\" placeholder=\"Project name\" />\n	<label>Storyline:</label>\n	<select id=\"project-storyline\">\n		";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.storylines), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n	</select>\n	<br/><br/>\n	<input id=\"project-submit\" type=\"submit\" value=\"Create Project\" />\n</form>";
@@ -151,11 +151,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
+  buffer += "<span class=\"logo\">";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " - "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.storyline)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1));
+    + "</span> <span class=\"text\">- "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.storyline)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</span>";
   return buffer;
   });
 
@@ -165,7 +167,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div id=\"new-project\"></div>\n<div id=\"projects\">\n	<h2>Load Project</h2>\n</div>\n\n\n";
+  return "<div id=\"new-project\"></div>\n<div id=\"projects\">\n	<h2><i class=\"fi-folder\"></i> Load Project</h2>\n</div>\n\n\n";
   });
 
 this["JST"]["app/template/storyline-edit-synopsis.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

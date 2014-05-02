@@ -1,10 +1,10 @@
 define([
-  'jquery', 
-  'backbone', 
+  'jquery',
+  'backbone',
   'template'
 ], function(
-  $, 
-  Backbone, 
+  $,
+  Backbone,
   Template
 ){
 
@@ -26,10 +26,10 @@ define([
       this.model = model;
 
       Backbone.on('project:loaded', function(project, storyline){
-        $(_this.el).find('.title').html('Project: ' +project.get('title'));
+        $(_this.el).find('.title').html('<span class="logo">Storyline Editor</span> <span class="text">Project: ' +project.get('title') +'</span>');
       });
       Backbone.on('project:load', function(project, storyline){
-        $(_this.el).find('.title').html('Storyline Editor');
+        $(_this.el).find('.title').html('<span class="logo">Storyline Editor</span>');
       });
     },
 
