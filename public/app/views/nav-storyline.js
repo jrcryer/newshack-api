@@ -16,23 +16,23 @@ define([
 
     template: Template['app/template/nav-storyline.hbs'],
 
-    el: "#storyline-nav",
+    el: "#nav-storyline",
 
     events: {
       'click .storyline': 'onClick'
     },
 
     initialize: function (model) {
-      this.model = model;
+      this.model = model.storyline;
     },
 
     render: function () {
 
-      var html = this.template(this.model.toJSON().storyline);
+      var html = this.template(this.model);
       $(this.el).append(html);
 
       var html = $('<ul class="events"/>'), eventView;
-      this.model.get('storyline').events.forEach(function(event){
+      this.model.events.forEach(function(event){
         eventView = new NavEventView(event);
         html.append(eventView.render().el);
       });
@@ -41,7 +41,8 @@ define([
     },
 
     onClick: function () {
-      Backbone.trigger('storyline:select', this.model.toJSON());
+      Backbone.trigger('storyline:select', this.model);
+      //this.$el.find('.properties').addClass('active');
     }
 
   });
