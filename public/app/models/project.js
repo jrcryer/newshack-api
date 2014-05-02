@@ -9,6 +9,12 @@ define([
 	var ProjectModel = Backbone.Model.extend({
 	  url : function() {
 	    return '/api/projects/' + this.id;
+	  },
+	  toJSON: function(){
+	  	return {
+	  		title: this.get('title'),
+	  		storyline: this.get('storyline')
+	  	}
 	  }
 	});
 

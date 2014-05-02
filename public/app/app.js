@@ -48,6 +48,7 @@ define([
       // jQuery get project by projectID
 
       var project = new ProjectModel({id: id});
+      window.project = project;
 
       project.fetch({
         success: function (model) {

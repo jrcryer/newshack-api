@@ -8,7 +8,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<header>\n    <button>Save project</button>\n</header>\n<div id=\"storyline-nav\"></div>\n<div id=\"editor\"></div>";
+  return "<header></header>\n<div id=\"storyline-nav\"></div>\n<div id=\"editor\"></div>";
   });
 
 this["JST"]["app/template/editor.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -36,6 +36,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   buffer += escapeExpression(stack1)
     + "</li>\n</ul>";
   return buffer;
+  });
+
+this["JST"]["app/template/header.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<p class=\"save\">Save project</p>";
   });
 
 this["JST"]["app/template/nav-event.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
