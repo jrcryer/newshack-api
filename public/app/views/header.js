@@ -15,6 +15,7 @@ define([
     el: "header",
 
     events: {
+      'click .title': 'editProject',
       'click .preview': 'previewProject',
       'click .load': 'loadProject',
       'click .save': 'saveProject'
@@ -24,8 +25,8 @@ define([
       var _this = this;
       this.model = model;
 
-      Backbone.on('project:edit', function(project, storyline){
-        $(_this.el).find('.title').html('Edit Project: ' +project.get('title'));
+      Backbone.on('project:loaded', function(project, storyline){
+        $(_this.el).find('.title').html('Project: ' +project.get('title'));
       });
       Backbone.on('project:load', function(project, storyline){
         $(_this.el).find('.title').html('Storyline Editor');
@@ -35,6 +36,10 @@ define([
     render: function () {
       var html = this.template();
       $(this.el).append(html);
+    },
+
+    editProject: function () {
+      Backbone.trigger('project:edit', window.project._id);
     },
 
     previewProject: function () {

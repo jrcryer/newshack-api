@@ -3,6 +3,7 @@ define([
   'backbone', 
   'template',
   'views/project-preview',
+  'views/project-edit-title',
   'views/storyline-summary',
   'views/storyline-edit-title',
   'views/storyline-edit-synopsis',
@@ -13,6 +14,7 @@ define([
   Backbone, 
   Template,
   ProjectPreviewView,
+  ProjectEditTitleView,
   StorylineSummaryView,
   StorylineEditTitleView,
   StorylineEditSynopsisView,
@@ -25,6 +27,10 @@ define([
     template: Template['app/template/editor.hbs'],
 
     el: '#editor',
+
+    getProject: function() {
+      return window.project;
+    },
 
     getProjectStoryline: function() {
       return window.project.storyline;
@@ -56,6 +62,11 @@ define([
 
     initialize: function () {
       var _this = this;
+      Backbone.on('project:edit', function(project){
+        _this.showProject(
+          _this.getProject()
+        );
+      });
       Backbone.on('storyline:select', function(storyline){
         _this.showStoryline(
           _this.getProjectStoryline(),
@@ -83,6 +94,13 @@ define([
       var view;
       this.$el.find('#editor-content').html('');
       view = new ProjectPreviewView(window.project);
+      view.render();
+    },
+
+    showProject: function(project) {
+      var view;
+      this.$el.find('#editor-content').html('');
+      view = new ProjectEditTitleView(project);
       view.render();
     },
 

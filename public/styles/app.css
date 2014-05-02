@@ -35,13 +35,21 @@ header {
 	height: 45px;
 }
 header .title {
+	cursor: pointer;
 	font-size: 1.35em;
 	padding: 3px 0 0 10px;
+}
+header .title:hover {
+	text-decoration: underline;
 }
 header a {
 	padding: 3px 5px;
 	background: #efefef;
 }
+header a:hover {
+	text-decoration: underline;
+}
+
 header ul {
 	position: absolute;
 	top: 5px;
@@ -70,6 +78,7 @@ header .inline-list li {
 #nav-storyline li:hover {
 	background: #9a9a9a;
 	color: #003366;
+	text-decoration: underline;
 }
 #nav-storyline ul.events li {
 	padding-left: 20px;

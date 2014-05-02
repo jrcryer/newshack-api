@@ -86,7 +86,7 @@ define([
               window.project = project.toJSON();
               window.storylineModel = storyline;
               window.storyline = storyline.toJSON();
-              Backbone.trigger('project:edit', project, storyline);
+              Backbone.trigger('project:loaded', project, storyline);
               view.setProjectAndStoryline({
                 project: window.project,
                 storyline: window.storyline
